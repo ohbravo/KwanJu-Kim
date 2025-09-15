@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HRD 니즈 진단 시스템</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      // 페이지 로드 시 FOUC(Flash of Unstyled Content)를 방지하기 위해 인라인 스크립트로 테마를 미리 적용합니다.
+      if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark')
+      } else {
+        document.documentElement.classList.remove('dark')
+      }
+
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              'brand-blue': '#2E86AB',
+              'brand-orange': '#F18F01',
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      @media print {
+        /* 인쇄 시 불필요한 UI 요소 숨기기 */
+        .no-print {
+          display: none !important;
+        }
+
+        /* 인쇄를 위한 페이지 기본값 재설정 */
+        body {
+          background-color: #fff !important;
+        }
+        
+        /* 다크모드와 상관없이 모든 텍스트를 검은색으로 강제 */
+        * {
+          color: #000 !important;
+          border-color: #ccc !important;
+        }
+        
+        /* 컨테이너의 그림자 및 배경색 제거 */
+        .shadow-lg {
+          box-shadow: none !important;
+        }
+        
+        .bg-white, .dark\:bg-slate-800, .bg-slate-50, .dark\:bg-slate-900, .bg-slate-100, .dark\:bg-slate-700, .dark\:bg-slate-700\/50 {
+            background-color: transparent !important;
+        }
+        
+        /* 브랜드 컬러는 유지하여 인쇄물에서도 강조되도록 함 */
+        .text-brand-blue {
+            color: #2E86AB !important;
+        }
+        .text-brand-orange {
+            color: #F18F01 !important;
+        }
+
+        main {
+           padding: 0 !important;
+           margin: 0 !important;
+           max-width: 100% !important;
+        }
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://aistudiocdn.com/react@^19.1.1/",
+    "react": "https://aistudiocdn.com/react@^19.1.1",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.1.1/",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.19.0"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
